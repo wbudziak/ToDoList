@@ -27,12 +27,12 @@ const editTask = (edit, spn, editInput) => {
         edit.style.color = "#85c967";
     } else {
         editCheck = !editCheck;
-        edit.innerHTML = `<i class="far fa-edit"></i>`
+        edit.innerHTML = `<i class="far fa-edit"></i>`;
         edit.style.color = "gray";
         const newInputValue = editInput.value;
 
         if (newInputValue.length > 38) {
-            alert("add text no longer than 38 signs")
+            alert("add text not longer than 38 chars.");
             editInput.value = '';
             return;
         }
@@ -117,7 +117,7 @@ const addTask = (e) => {
         return;
     }
     if (addInputValue.length > 38) {
-        alert("add text no longer than 38 signs")
+        alert("add text not longer than 38 chars.");
         addInput.value = '';
         return;
     }
@@ -127,7 +127,7 @@ const addTask = (e) => {
     addInput.value = "";
 }
 
-const callFunctions = function () {
+const runFuncions = function () {
     addBtn.addEventListener('click', addTask);
 
     const enter = (e) => {
@@ -166,4 +166,4 @@ const callFunctions = function () {
     })
 
 }
-callFunctions();
+runFuncions();
