@@ -7,8 +7,10 @@ const clearAll = document.querySelector('.clear-all')
 const listItems = document.getElementsByClassName('task');
 const tasks = document.querySelector('.active-tasks');
 let toDoList = [];
-let editCheck = true;
 let searchCheck = true;
+let testFlag = true;
+let testValue = 0;
+
 
 const renderList = () => {
     listContainer.textContent = "";
@@ -21,23 +23,14 @@ const renderList = () => {
 const editTask = (edit, spn, editInput) => {
     editInput.classList.toggle("show");
     spn.classList.toggle("hide");
-    if (editCheck) {
-        editCheck = !editCheck;
-        edit.innerHTML = `<i class="fas fa-check"></i>`;
-        edit.style.color = "#85c967";
-    } else {
-        editCheck = !editCheck;
-        edit.innerHTML = `<i class="far fa-edit"></i>`;
-        edit.style.color = "gray";
-        const newInputValue = editInput.value;
 
-        if (newInputValue.length > 38) {
-            alert("add text not longer than 38 chars.");
-            editInput.value = '';
-            return;
-        }
+    const newInputValue = editInput.value;
+    spn.textContent = newInputValue;
 
-        spn.textContent = newInputValue;
+    if (newInputValue.length > 38) {
+        alert("add text not longer than 38 chars.");
+        editInput.value = '';
+        return;
     }
 }
 
@@ -54,6 +47,7 @@ const completedTask = (text) => {
 }
 
 const createListElement = (addInputValue) => {
+
     const task = document.createElement('div');
     task.className = "task";
     listContainer.appendChild(task);
@@ -84,7 +78,19 @@ const createListElement = (addInputValue) => {
     edit.innerHTML = `<i class="far fa-edit"></i>`
     edit.className = "edit";
     task.appendChild(edit);
+
+    let editCheck = true;
+
     task.querySelector('.edit').addEventListener('click', () => {
+        if (editCheck) {
+            editCheck = !editCheck;
+            edit.innerHTML = `<i class="fas fa-check"></i>`;
+            edit.style.color = "#85c967";
+        } else {
+            editCheck = !editCheck;
+            edit.innerHTML = `<i class="far fa-edit"></i>`;
+            edit.style.color = "gray";
+        }
         editTask(edit, spn, editInput);
     });
 
