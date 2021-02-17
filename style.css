@@ -253,9 +253,44 @@ body {
 }
 
 .check {
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
   width: 16px;
   height: 16px;
+  border: 1px solid gray;
+  border-radius: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  outline: none;
   cursor: pointer;
+  -webkit-transition: .3s linear;
+  transition: .3s linear;
+}
+
+.check::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f00c";
+  font-size: 10px;
+  color: white;
+  display: none;
+}
+
+.check:checked {
+  background-color: #70cf78;
+  border: none;
+}
+
+.check:checked::after {
+  display: block;
 }
 
 .show {
